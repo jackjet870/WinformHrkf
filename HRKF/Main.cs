@@ -55,66 +55,59 @@ namespace HRKF
             //Handle incoming event from server: use Invoke to write to console from SignalR's thread
             ihubProxy.On<string, string>("AAA", (name, message) => this.Invoke((Action)(() =>
                      richTextBox1.AppendText(String.Format("{0}: {1}" + Environment.NewLine, name, message))
-                //treeView1.Nodes[1].Nodes.Add(name)
-                //MessageBox.Show(""))
-
-                ))
-               
-               
+                ))                            
             );
-            ihubProxy.On<string>("AA", (name) => this.Invoke((Action)(() =>
-                   // richTextBox1.AppendText(String.Format("{0}: {1}" + Environment.NewLine, name, message))
-               treeView1.Nodes[1].Nodes.Add(name)
-               //MessageBox.Show(""))
-
+            ihubProxy.On<string>("AddTree", (name) => this.Invoke((Action)(() =>                  
+               treeView1.Nodes[1].Nodes.Add(name)       
                ))
-
-
+           );
+           // ihubProxy.On<string>("RemoveTree", (name) => this.Invoke((Action)(() =>
+           //    //treeView1.Nodes[1].Nodes[name].Remove()
+           //    ))
+           //);
+            ihubProxy.On<string>("AddTreeLeave", (name) => this.Invoke((Action)(() =>
+               treeView1.Nodes[3].Nodes.Add(name)
+               ))
            );
             try
             {
-                await conn.Start();
-                //string select = "select FromUser from users where username='"+admin+"'";
-                //SqlDataReader dr = SqlHelper.GetReader(select, CommandType.Text);
-                //while (dr.Read())
-                //{
-                    
-                //}
-
+                await conn.Start();               
             }
             catch (Exception)
             {
                 free = "free";
                 richTextBox1.AppendText("目前没有客户" + Environment.NewLine);
-            }
-            
+            }           
             //Activate UI
-
             textBox1.Focus();
-           // richTextBox1.AppendText("Connected to server at " + "http://localhost:50076/signalr/hubs" + Environment.NewLine);
-            //UserManager.AddUser("bbb", conn.ConnectionId);
+           // richTextBox1.AppendText("Connected to server at " + "http://localhost:50076/signalr/hubs" + Environment.NewLine);         
         }
-
+       
+     
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
 
+            treeView1.SelectedNode.Nodes["aaa"].Remove();
+            if (string.IsNullOrEmpty(htmlEditor1.BodyInnerText))
+            {
+                pictureBox9.Visible = true;
+                timer1.Enabled = true;
+                timer1.Interval = 50;
+            }
+            try
+            {              
                 ihubProxy.Invoke("Send", admin, Visitor, htmlEditor1.BodyInnerText);
                 richTextBox1.AppendText(String.Format("{0}" + Environment.NewLine, "我：" + htmlEditor1.BodyInnerText));
-                htmlEditor1.BodyInnerText = "";               
+                richTextBox1.ScrollToCaret();
+                htmlEditor1.BodyInnerText = "";
+                htmlEditor1.Focus();
             }
             catch
             {
                 if (free=="free")
                 {
-                    MessageBox.Show("目前没有客户");
-                }
-                else
-                {
-                     MessageBox.Show("你处于离线状态");
-                }
-               
+                    richTextBox1.AppendText("目前没有客户");
+                }                              
             }
         }
 
@@ -127,7 +120,9 @@ namespace HRKF
 
         private void Main_Load(object sender, EventArgs e)
         {
-            button1.Enabled = false;
+            //button1.Enabled = false;
+            pictureBox9.Visible = false;
+            treeView1.Nodes[1].Nodes.Add("aaa");
         }
 
         private void htmlEditor1_Load(object sender, EventArgs e)
@@ -162,10 +157,24 @@ namespace HRKF
             }
             else
             {
-                button1.Enabled = false;
+               // button1.Enabled = false;
             }
 
 
+        }
+        int i = 1;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (i<=20)
+            {
+                i++;
+            }
+            else
+            {
+                i = 1;
+                pictureBox9.Visible = false;
+                timer1.Enabled = false;
+            }
         }
     }
 }

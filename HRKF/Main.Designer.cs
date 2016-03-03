@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("排队中的访客");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("自己");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("浏览网页的访客");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("已离开的访客");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("排队中的访客");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("自己");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("浏览网页的访客");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("已离开的访客");
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -54,6 +54,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.spelling1 = new NetSpell.SpellChecker.Spelling(this.components);
             this.wordDictionary1 = new NetSpell.SpellChecker.Dictionary.WordDictionary(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -66,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -82,20 +85,20 @@
             // 
             this.treeView1.Location = new System.Drawing.Point(9, 40);
             this.treeView1.Name = "treeView1";
-            treeNode1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            treeNode1.Name = "节点1";
-            treeNode1.Text = "排队中的访客";
-            treeNode2.Name = "jiedian2";
-            treeNode2.Text = "自己";
-            treeNode3.Name = "节点3";
-            treeNode3.Text = "浏览网页的访客";
-            treeNode4.Name = "节点4";
-            treeNode4.Text = "已离开的访客";
+            treeNode17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            treeNode17.Name = "节点1";
+            treeNode17.Text = "排队中的访客";
+            treeNode18.Name = "jiedian2";
+            treeNode18.Text = "自己";
+            treeNode19.Name = "节点3";
+            treeNode19.Text = "浏览网页的访客";
+            treeNode20.Name = "节点4";
+            treeNode20.Text = "已离开的访客";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20});
             this.treeView1.Size = new System.Drawing.Size(169, 288);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -117,6 +120,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.pictureBox9);
             this.panel2.Controls.Add(this.htmlEditor1);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.richTextBox1);
@@ -137,7 +141,7 @@
             this.htmlEditor1.ShowStatusBar = true;
             this.htmlEditor1.ShowToolBar = true;
             this.htmlEditor1.ShowWb = true;
-            this.htmlEditor1.Size = new System.Drawing.Size(556, 130);
+            this.htmlEditor1.Size = new System.Drawing.Size(562, 130);
             this.htmlEditor1.TabIndex = 5;
             this.htmlEditor1.WebBrowserShortcutsEnabled = true;
             this.htmlEditor1.Load += new System.EventHandler(this.htmlEditor1_Load);
@@ -268,6 +272,19 @@
             // 
             this.wordDictionary1.DictionaryFile = "zh-CN.dic";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::HRKF.Properties.Resources.QQ图片20160303150149;
+            this.pictureBox9.Location = new System.Drawing.Point(373, 277);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(192, 49);
+            this.pictureBox9.TabIndex = 6;
+            this.pictureBox9.TabStop = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -294,6 +311,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,5 +338,7 @@
         private NetSpell.SpellChecker.Spelling spelling1;
         private NetSpell.SpellChecker.Dictionary.WordDictionary wordDictionary1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox9;
     }
 }
